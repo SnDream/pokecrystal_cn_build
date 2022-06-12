@@ -1,0 +1,49 @@
+#!/bin/bash
+
+if [ ${0##*/} != 'env-setup' ]
+then
+    echo "Build rgbds..."
+    make -C rgbds
+    export BUILD_ROOT=$(realpath .)
+    [ -z "${PATH_EXPORTED}" ] && {
+        export PATH="$(realpath rgbds):${PATH}"
+        PATH_EXPORTED=y
+    }
+    pmc_init() {
+        cd "${BUILD_ROOT}" &&
+        mkdir -p build &&
+        rsync -avz --exclude=".git" pokecrystal_cn/ build/
+    }
+    pmc_finit() {
+        cd "${BUILD_ROOT}" &&
+        mkdir -p build &&
+        rsync -avz --delete --delete-excluded --exclude=".git" pokecrystal_cn/ build/
+    }
+    pmc_itext() {
+        cd "${BUILD_ROOT}" &&
+        patch -d build/ -p1 < cn_credits.diff &&
+        python3 tools/text_import_text.py
+    }
+    pmc_isys() {
+        cd "${BUILD_ROOT}" &&
+        python3 tools/text_import_sys.py
+    }
+    pmc_build() {
+        cd "${BUILD_ROOT}" &&
+        make -C build crystal11 &&
+        make -C build crystal11_debug
+    }
+
+    echo "************************"
+    echo "  Env setuped! Usage:"
+    echo "    Init build (fast, partial)   : pmc_init"
+    echo "    Full init build (slow, full) : pmc_finit"
+    echo "    Import sys  text to src   dir: pmc_isys"
+    echo "    Import game text to build dir: pmc_itext"
+    echo "    Build ROM                    : pmc_build"
+    echo "************************"
+else
+    echo "************************"
+    echo "  Use \"source env-setup\" instead of running this script!"
+    echo "************************"
+fi

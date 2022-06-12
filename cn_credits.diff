@@ -1,0 +1,190 @@
+diff --git a/constants/credits_constants.asm b/constants/credits_constants.asm
+index a3d20eb46..f1a198909 100644
+--- a/constants/credits_constants.asm
++++ b/constants/credits_constants.asm
+@@ -103,6 +103,16 @@
+ 	const US_COORDINATION
+ 	const TEXT_TRANSLATION
+ 	const PAAD_TESTING
++	const CN_VERSION_STAFF
++	const CN_PROGRAMMER
++	const CN_VERSION_TESTING
++	const CN_PIGPIGZERO
++	const CN_INVINCIBLE_ARCEUS
++	const CN_ONION_REDMAGE
++	const CN_YIBUBUBU
++	const CN_SNDREAM
++	const CN_CHRIS_Z
++	const CN_NINSONYTENDOG
+ 
+ ; CreditsScript indexes (see data/credits_script.asm)
+ 	const_def -1, -1
+diff --git a/data/credits_script.asm b/data/credits_script.asm
+index 7f349aaad..0b47e3f03 100644
+--- a/data/credits_script.asm
++++ b/data/credits_script.asm
+@@ -190,42 +190,60 @@ CreditsScript:
+ ; Update the banner.
+ 	db CREDITS_SCENE, 3 ; Igglybuff
+ 
+-	db     US_VERSION_STAFF, 2
++	; db     US_VERSION_STAFF, 2
++	db     CN_VERSION_STAFF, 2
+ 
+ 	db CREDITS_WAIT, 9
+ 
+-	db      US_COORDINATION, 1
+-	db          GAIL_TILDEN, 2
+-	db        HIRO_NAKAMURA, 3
++	; db      US_COORDINATION, 1
++	; db          GAIL_TILDEN, 2
++	; db        HIRO_NAKAMURA, 3
++	db     TEXT_TRANSLATION, 1
++	db        CN_PIGPIGZERO, 2
++	db CN_INVINCIBLE_ARCEUS, 3
+ 
+ 	db CREDITS_WAIT, 12
+ 
+-	db      US_COORDINATION, 1
+-	db       JUNICHI_MASUDA, 2
+-	db        SETH_MCMAHILL, 3
++	; db      US_COORDINATION, 1
++	; db       JUNICHI_MASUDA, 2
++	; db        SETH_MCMAHILL, 3
++	db     TEXT_TRANSLATION, 1
++	db     CN_ONION_REDMAGE, 2
++	db          CN_YIBUBUBU, 3
+ 
+ 	db CREDITS_WAIT, 12
+ 
+-	db      US_COORDINATION, 1
+-	db     HIROTO_ALEXANDER, 2
+-	db     TERESA_LILLYGREN, 3
++	; db      US_COORDINATION, 1
++	; db     HIROTO_ALEXANDER, 2
++	; db     TERESA_LILLYGREN, 3
++	db        CN_PROGRAMMER, 1
++	db           CN_SNDREAM, 2
+ 
+ 	db CREDITS_WAIT, 12
+ 
+-	db     TEXT_TRANSLATION, 1
+-	db        NOB_OGASAWARA, 2
++	; db     TEXT_TRANSLATION, 1
++	; db        NOB_OGASAWARA, 2
++	db      GRAPHICS_DESIGN, 1
++	db           CN_SNDREAM, 2
++	db           CN_CHRIS_Z, 3
+ 
+ 	db CREDITS_WAIT, 12
+ 
+-	db          PROGRAMMERS, 1
+-	db      TERUKI_MURAKAWA, 2
+-	db      KAZUYOSHI_OSAWA, 3
++	; db          PROGRAMMERS, 1
++	; db      TERUKI_MURAKAWA, 2
++	; db      KAZUYOSHI_OSAWA, 3
++	db   CN_VERSION_TESTING, 1
++	db CN_INVINCIBLE_ARCEUS, 2
+ 
+ 	db CREDITS_WAIT, 12
+ 
+-	db         PAAD_TESTING, 1
+-	db       THOMAS_HERTZOG, 2
+-	db         ERIK_JOHNSON, 3
++	; db         PAAD_TESTING, 1
++	; db       THOMAS_HERTZOG, 2
++	; db         ERIK_JOHNSON, 3
++	db   CN_VERSION_TESTING, 0
++	db        CN_PIGPIGZERO, 1
++	db     CN_ONION_REDMAGE, 2
++	db     CN_NINSONYTENDOG, 3
+ 
+ 	db CREDITS_WAIT, 12
+ 
+diff --git a/data/credits_strings.asm b/data/credits_strings.asm
+index 22ee7c382..ad6cd3402 100644
+--- a/data/credits_strings.asm
++++ b/data/credits_strings.asm
+@@ -103,6 +103,16 @@ CreditsStringsPointers:
+ 	dw .UsCoordination
+ 	dw .TextTranslation
+ 	dw .PaadTesting
++	dw .CnVersionStaff
++	dw .CnProgrammer
++	dw .CnVersionTesting
++	dw .CnPigPigZero
++	dw .CnInvincibleArceus
++	dw .CnOnionRedmage
++	dw .CnYibububu
++	dw .CnSnDream
++	dw .CnChrisZ
++	dw .CnNinsonytendog
+ 
+ .SatoshiTajiri:       db "   SATOSHI TAJIRI@"         ; "たじり　さとし@"
+ .JunichiMasuda:       db "   JUNICHI MASUDA@"         ; "ますだ　じゅんいち@"
+@@ -210,6 +220,16 @@ CreditsStringsPointers:
+ .UsCoordination:      db "  US COORDINATION@"
+ .TextTranslation:     db "  TEXT TRANSLATION@"
+ .PaadTesting:         db "    PAAD TESTING@"
++.CnVersionStaff:      db "  CN VERSION STAFF@"        ; 中文版制作人员
++.CnProgrammer:        db "     PROGRAMMER@"           ; 程序（单数）
++.CnVersionTesting:    db " CN VERSION TESTING@"       ; 中文版测试
++.CnPigPigZero:        db "     PIGPIGZERO@"           ; 萌萌猪猪灵
++.CnInvincibleArceus:  db " INVINCIBLE ARCEUS@"        ; 无敌阿尔宙斯
++.CnOnionRedmage:      db "   ONION REDMAGE@"          ; 吃馍法师
++.CnYibububu:          db "      YIBUBUBU@"            ; 伊布布布
++.CnSnDream:           db "      SNDREAM@"             ; 星夜之幻
++.CnChrisZ:            db "      CHRIS.Z@"             ; Chris溢权
++.CnNinsonytendog:     db "   NINSONYTENDOG@"          ; 任索尼舔狗
+ 
+ .Copyright:
+ 	;    (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
+diff --git a/engine/menus/init_gender.asm b/engine/menus/init_gender.asm
+index 2d0ad8a70..50016ea2a 100644
+--- a/engine/menus/init_gender.asm
++++ b/engine/menus/init_gender.asm
+@@ -26,6 +26,19 @@ InitGender:
+ 	call LoadGenderScreenLightBlueTile
+ 	call WaitBGMap2
+ 	call SetPalettes
++	ldh a, [hJoyDown]
++	and SELECT | START
++	cp SELECT | START
++	jr nz, .skip_version
++	ld a, [wOptions]
++	push af
++	set NO_TEXT_SCROLL, a
++	ld [wOptions], a
++	ld hl, ChineseVersionText
++	call PrintText
++	pop af
++	ld [wOptions], a
++.skip_version
+ 	ld hl, AreYouABoyOrAreYouAGirlText
+ 	call PrintText
+ 	ld hl, .MenuHeader
+@@ -56,6 +69,23 @@ AreYouABoyOrAreYouAGirlText:
+ 	text_far _AreYouABoyOrAreYouAGirlText
+ 	text_end
+ 
++ChineseVersionText:
++	text " 《精灵宝可梦 水晶版》"
++	line "    汉化版 V1.2"
++	cont "萌萌猪猪灵 :翻译、测试"
++	cont "无敌阿尔宙斯:测试、翻译"
++	cont "吃馍法师   :测试、翻译"
++	cont "伊布布布   :翻译"
++	cont "星夜之幻   :程序、美工"
++	cont "Chris溢权 :美工"
++	cont "任索尼舔狗 :测试"
++
++	para "CKN/DMG/口袋群星SP"
++	line "联合汉化  2022.06.12"
++
++	prompt
++	text_end
++
+ InitGenderScreen:
+ 	ld a, $10
+ 	ld [wMusicFade], a
