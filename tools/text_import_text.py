@@ -179,9 +179,9 @@ with open('./tools/text_import_text_odctrl.txt') as f:
         od, fkname = line.strip('\n').split('\t')
         oddict[od] = fkname
 
-spoddict['monster_m03']    = {'text_ram wEnemyMonNick':  '赫拉克罗斯'}
-spoddict['nigeta_m01']     = {'text_ram wEnemyMonNick':  '代欧奇希斯'}
-spoddict['torikaeru_m01']  = {'text_ram wEnemyMonNick':  '精灵宝可梦'}
+spoddict['monster_m03']    = {'text_ram wEnemyMonNickname':  '赫拉克罗斯'}
+spoddict['nigeta_m01']     = {'text_ram wEnemyMonNickname':  '代欧奇希斯'}
+spoddict['torikaeru_m01']  = {'text_ram wEnemyMonNickname':  '精灵宝可梦'}
 spoddict['nige_ok_m02']    = {'text_ram wStringBuffer1': '烟雾球'}
 spoddict['koreijou_m01']    = {'text_ram wStringBuffer2': '命中率'}
 spoddict['koreijou_m02']    = {'text_ram wStringBuffer2': '闪避率'}
@@ -345,13 +345,13 @@ def make_asm(tb):
         asm_mk += '\ttext_end\n\n'
     elif tb.oeomjp == 'EOM^2':
         # asm_mk += '\ttext_end\n\n'
-        asm_mk += '\ttext_end\n\n\ttext_end ; unused\n\n'
+        asm_mk += '\ttext_end\n\n\ttext_end ; unreferenced\n\n'
     else:
         raise(Exception(tb.oeomjp + tb.olabel))
     # asm_mk = asm_mk.replace('\n\ttext_start\n\tdone\n', '\n\tdone\n')
     # asm_mk = asm_mk.replace('\n\ttext_start\n\tprompt\n', '\n\tprompt\n')
     asm_mk = asm_mk.replace('\n\ttext_start\n\ttext_end\n', '\n\ttext_end\n')
-    asm_mk = asm_mk.replace('"\n\ttext_end\n\n\ttext_end ; unused', '@"\n\ttext_end')
+    asm_mk = asm_mk.replace('"\n\ttext_end\n\n\ttext_end ; unreferenced', '@"\n\ttext_end')
     asm_mk_list = asm_mk.splitlines()
     tst = False
     for line in asm_mk_list:
@@ -409,7 +409,7 @@ def replace_asm(asmfile_list, asmn):
                     tb = tb_asm_dict[asmn].get(label)
                 elif state == 1:
                     if extra_end: extra_end = False
-                        # tb.asm += '\ttext_end ; unused\n\n'
+                        # tb.asm += '\ttext_end ; unreferenced\n\n'
                     opt_list.append(tb.asm)
                     length_check(tb)
                     tb = tb_asm_dict[asmn].get(label)
@@ -427,7 +427,7 @@ def replace_asm(asmfile_list, asmn):
                     else: state = 0
                 else: state = 0
             elif state == 1:
-                if line == '\ttext_end ; unused\n':
+                if line == '\ttext_end ; unreferenced\n':
                     extra_end = True
                 if line[0] == '\t':
                     line = '\t; ' + line[1:]

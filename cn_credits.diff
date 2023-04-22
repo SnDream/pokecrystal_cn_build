@@ -1,5 +1,5 @@
 diff --git a/constants/credits_constants.asm b/constants/credits_constants.asm
-index a3d20eb46..f1a198909 100644
+index 0fed374ea..47360e57b 100644
 --- a/constants/credits_constants.asm
 +++ b/constants/credits_constants.asm
 @@ -103,6 +103,16 @@
@@ -16,9 +16,9 @@ index a3d20eb46..f1a198909 100644
 +	const CN_SNDREAM
 +	const CN_CHRIS_Z
 +	const CN_NINSONYTENDOG
+ DEF NUM_CREDITS_STRINGS EQU const_value
  
  ; CreditsScript indexes (see data/credits_script.asm)
- 	const_def -1, -1
 diff --git a/data/credits_script.asm b/data/credits_script.asm
 index 7f349aaad..0b47e3f03 100644
 --- a/data/credits_script.asm
@@ -103,10 +103,10 @@ index 7f349aaad..0b47e3f03 100644
  	db CREDITS_WAIT, 12
  
 diff --git a/data/credits_strings.asm b/data/credits_strings.asm
-index 22ee7c382..ad6cd3402 100644
+index c3a502088..d4b3c294d 100644
 --- a/data/credits_strings.asm
 +++ b/data/credits_strings.asm
-@@ -103,6 +103,16 @@ CreditsStringsPointers:
+@@ -104,6 +104,16 @@ CreditsStringsPointers:
  	dw .UsCoordination
  	dw .TextTranslation
  	dw .PaadTesting
@@ -120,10 +120,10 @@ index 22ee7c382..ad6cd3402 100644
 +	dw .CnSnDream
 +	dw .CnChrisZ
 +	dw .CnNinsonytendog
+ 	assert_table_length NUM_CREDITS_STRINGS
  
  .SatoshiTajiri:       db "   SATOSHI TAJIRI@"         ; "たじり　さとし@"
- .JunichiMasuda:       db "   JUNICHI MASUDA@"         ; "ますだ　じゅんいち@"
-@@ -210,6 +220,16 @@ CreditsStringsPointers:
+@@ -212,6 +222,16 @@ CreditsStringsPointers:
  .UsCoordination:      db "  US COORDINATION@"
  .TextTranslation:     db "  TEXT TRANSLATION@"
  .PaadTesting:         db "    PAAD TESTING@"
@@ -141,7 +141,7 @@ index 22ee7c382..ad6cd3402 100644
  .Copyright:
  	;    (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
 diff --git a/engine/menus/init_gender.asm b/engine/menus/init_gender.asm
-index 2d0ad8a70..50016ea2a 100644
+index 4bf8cc2f0..611007df9 100644
 --- a/engine/menus/init_gender.asm
 +++ b/engine/menus/init_gender.asm
 @@ -26,6 +26,19 @@ InitGender:
