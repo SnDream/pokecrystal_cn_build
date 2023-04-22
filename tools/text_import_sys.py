@@ -55,11 +55,11 @@ def import_class():
         file = f.readlines()
     file_opt = []
     for line in file:
-        if 'db "' in line:
+        if 'li "' in line:
             name = ws.cell(row = wbi, column = 4).value
             wbi += 1
             line_sp = line.split('"')
-            line_sp[1] = name + '@'
+            line_sp[1] = name
             line = '"'.join(line_sp)
         file_opt.append(line)
     with open('./pokecrystal_cn/data/trainers/class_names.asm', 'w') as f:
@@ -93,13 +93,13 @@ def import_item():
         file = f.readlines()
     file_opt = []
     for line in file:
-        if 'db "?@"' in line:
+        if 'li "?"' in line:
             pass
-        elif 'db "' in line:
+        elif 'li "' in line:
             name = ws.cell(row = wbi, column = 4).value
             wbi += 1
             line_sp = line.split('"')
-            line_sp[1] = name + '@'
+            line_sp[1] = name
             line = '"'.join(line_sp)
         file_opt.append(line)
     with open('./pokecrystal_cn/data/items/names.asm', 'w') as f:
@@ -114,11 +114,11 @@ def import_move():
         file = f.readlines()
     file_opt = []
     for line in file:
-        if 'db "' in line:
+        if 'li "' in line:
             name = ws.cell(row = wbi, column = 4).value
             wbi += 1
             line_sp = line.split('"')
-            line_sp[1] = name + '@'
+            line_sp[1] = name
             line = '"'.join(line_sp)
         file_opt.append(line)
     with open('./pokecrystal_cn/data/moves/names.asm', 'w') as f:
